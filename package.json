@@ -1,0 +1,19 @@
+{
+  "name": "ProjectAPI",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/alomaryam/ProjectAPI.git",
+  "author": "alomaryam <alomaryam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.1",
+    "sequelize-cli": "^6.2.0"
+  }
+}
