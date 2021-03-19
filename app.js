@@ -3,12 +3,23 @@ const cors = require("cors");
 const app = express();
 const db = require("./db/models");
 
-const StudentRouter = require("./API/Routers/studentRouter.js");
+const studentRouter = require("./API/Routers/studentRouter");
+const collegeRouter = require("./API/Routers/collegeRouter");
+const courseRouter = require("./API/Routers/courseRouter");
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); //instead of body-parser
 
-app.use("/students", StudentRouter);
+app.use("/students", studentRouter);
+app.use("/colleges", collegeRouter);
+app.use("/courses", courseRouter);
+
+app.use((error, request, response, next) => {
+  response.status(error.status || 500);
+  response.json({
+    message: error.message || "Internal Server Error",
+  });
+});
 
 const run = async () => {
   try {

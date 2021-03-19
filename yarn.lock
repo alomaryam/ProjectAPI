@@ -524,6 +524,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash.defaults@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
+  integrity sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw=
+
 lodash@^4.17.20, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
@@ -942,6 +947,13 @@ sequelize-pool@^6.0.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-6.1.0.tgz#caaa0c1e324d3c2c3a399fed2c7998970925d668"
   integrity sha512-4YwEw3ZgK/tY/so+GfnSgXkdwIJJ1I32uZJztIEgZeAO6HMgj64OzySbWLgxj+tXhZCJnzRfkY9gINw8Ft8ZMg==
 
+sequelize-slugify@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/sequelize-slugify/-/sequelize-slugify-1.5.0.tgz#3305aaf2857ba36122cb36d1091d49e60957bcf6"
+  integrity sha512-MkniREV0DnH6d4I2gt9IUkQ5C9vv2tqa7WYZXk4hCqRLg7jxFEPrNigMDcdAfnh542U9rpzbnMVGteqYEGmqiA==
+  dependencies:
+    sluglife "^0.9.8"
+
 sequelize@^6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.5.1.tgz#bb08c001515afe159f9efe8c1d59b7a07c43a608"
@@ -985,6 +997,14 @@ sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
   integrity sha1-P/IfGYytIXX587eBhT/ZTQ0ZtZA=
+
+sluglife@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/sluglife/-/sluglife-0.9.8.tgz#82e9bbfea8897fd102af416d890f59fb59f26ea0"
+  integrity sha512-tJ5KZ9E8ApCFDIQqKbqXVhi4FdTjWCKg1jeEB8M7UxRaT3Sk9Al3GwFfltVV6JJhTZaHrONthNmWtZMExJNRqQ==
+  dependencies:
+    lodash.defaults "^4.2.0"
+    unicode ">=11.0.1"
 
 split2@^3.1.1:
   version "3.2.2"
@@ -1068,6 +1088,11 @@ underscore@^1.7.0:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.12.1.tgz#7bb8cc9b3d397e201cf8553336d262544ead829e"
   integrity sha512-hEQt0+ZLDVUMhebKxL4x1BTtDY7bavVofhZ9KZ4aI26X9SRaE+Y3m83XUL1UP2jn8ynjndwCCpEHdUG+9pP1Tw==
+
+unicode@>=11.0.1:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/unicode/-/unicode-13.0.0.tgz#0775fe86cdbb1fa30e8d060afe194f71aa0c5306"
+  integrity sha512-osNPLT4Lqna/sV6DQikrB8m4WxR61/k0fnhfKnkPGcZImczW3IysRXvWxfdqGUjh0Ju2o/tGGgu46mlfc/cpZw==
 
 universalify@^0.1.0:
   version "0.1.2"

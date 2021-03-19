@@ -1,13 +1,31 @@
-// const express = require("express");
-// const router = express.Router();
-// // const { StudentList } = require("../Controllers/studentController.js");
+const express = require("express");
+const router = express.Router();
+const {
+  courseList,
+  courseCreate,
+  courseUpdate,
+  courseDelete,
+  fetchCourse,
+} = require("../Controllers/courseController.js");
 
-// router.get("/course", courseList);
+router.param("courseID", async (request, response, next, courseID) => {
+  const course = await fetchStudent(courseID, next);
+  if (course) {
+    request.course = course;
+    next();
+  } else {
+    const error = new Error("Course Not Found");
+    error.status = 404;
+    next(error);
+  }
+});
 
-// router.post("/course", courseCreate);
+router.get("/", courseList);
 
-// router.put("/course/:courseID", courseUpdate);
+router.post("/", courseCreate);
 
-// router.delete("/course/:courseID", courseDelete);
+router.put("/:courseID", courseUpdate);
 
-// module.exports = router;
+router.delete("/:courseID", courseDelete);
+
+module.exports = router;

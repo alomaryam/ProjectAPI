@@ -1,59 +1,57 @@
 const { Student } = require("../../db/models");
 
+//fetching
+exports.fetchStudent = async (studentId, next) => {
+  try {
+    const student = await Student.findByPk(studentId);
+    return student;
+  } catch (error) {
+    next(error);
+  }
+};
+
 // get student list
 
-exports.studentList = async (request, response) => {
+exports.studentList = async (request, response, next) => {
   try {
     const student = await Student.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
     response.status(200).json(student);
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
 // create student
 
-exports.studentCreate = async (request, response) => {
+exports.studentCreate = async (request, response, next) => {
   try {
     const newStudent = await Student.create(request.body);
     response.status(201).json(newStudent);
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
 //update student
 
-exports.studentUpdate = async (request, response) => {
-  const { studentID } = request.params;
+exports.studentUpdate = async (request, response, next) => {
   try {
-    const foundStudent = await Student.findByPk(studentID);
-    if (foundStudent) {
-      await foundStudent.update(request.body);
-      response.status(204).end();
-    } else {
-      response.status(404).json({ message: "Student not found" });
-    }
+    await request.student.update(request.body);
+    response.status(204).end();
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
 //delete students
 
-exports.studentDelete = async (request, response) => {
-  const { studentID } = request.params;
+exports.studentDelete = async (request, response, next) => {
   try {
-    const foundStudent = await Student.findByPk(studentID);
-    if (foundStudent) {
-      await foundStudent.destroy();
-      response.status(204).end();
-    } else {
-      response.status(404).json({ message: "Student not found" });
-    }
+    await request.student.destroy();
+    response.status(204).end();
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    next(error);
   }
 };
