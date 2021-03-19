@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const College = sequelize.define("College", {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     slug: {
       type: DataTypes.STRING,
@@ -11,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     buildingNUM: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 

@@ -16,6 +16,11 @@ exports.courseList = async (request, response, next) => {
   try {
     const course = await Course.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: {
+        model: College,
+        as: "college",
+        attributes: ["name"],
+      },
     });
     response.status(200).json(course);
   } catch (error) {
@@ -27,6 +32,7 @@ exports.courseList = async (request, response, next) => {
 
 exports.courseCreate = async (request, response, next) => {
   try {
+    request.body.collegeID = request.college.id;
     const newCourse = await Course.create(request.body);
     response.status(201).json(newCourse);
   } catch (error) {
