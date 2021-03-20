@@ -10,9 +10,9 @@ const courseRouter = require("./API/Routers/courseRouter");
 app.use(cors());
 app.use(express.json()); //instead of body-parser
 
-app.use("/", studentRouter);
-app.use("/", collegeRouter);
-app.use("/", courseRouter);
+app.use("/students", studentRouter);
+app.use("/colleges", collegeRouter);
+app.use("/courses", courseRouter);
 
 app.use((error, request, response, next) => {
   response.status(error.status || 500);

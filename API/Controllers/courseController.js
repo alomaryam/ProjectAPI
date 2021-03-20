@@ -16,11 +16,21 @@ exports.courseList = async (request, response, next) => {
   try {
     const course = await Course.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
-      include: {
-        model: College,
-        as: "college",
-        attributes: ["name"],
-      },
+      include: [
+        {
+          model: College,
+          as: "college",
+          attributes: ["name"],
+        },
+        {
+          model: Student,
+          as: "student",
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
     });
     response.status(200).json(course);
   } catch (error) {

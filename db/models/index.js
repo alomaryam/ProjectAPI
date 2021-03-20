@@ -45,7 +45,7 @@ db.Sequelize = Sequelize;
 
 //relationships
 
-//college relationship [one to many]
+//college relationship
 
 db.College.hasMany(db.Course, {
   foreignKey: "collegeId",
@@ -61,18 +61,18 @@ db.Course.belongsTo(db.College, {
   foreignKey: "collegeId",
 });
 
-// db.Course.belongsToMany(db.Student, {
-//   as: "student",
-//   foreignKey: "courseId",
-// });
-
-// db.Course.hasMany(db.Student);
+db.Course.belongsToMany(db.Student, {
+  through: "Course-Student",
+  as: "student",
+  foreignKey: "courseId",
+});
 
 //student relationship:
 
-// db.Student.belongsToMany(db.Course, {
-//   as: "course",
-//   foreignKey: "courseId",
-// });
+db.Student.belongsToMany(db.Course, {
+  through: "Course-Student",
+  as: "course",
+  foreignKey: "studentId",
+});
 
 module.exports = db;

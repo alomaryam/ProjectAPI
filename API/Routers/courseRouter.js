@@ -9,7 +9,7 @@ const {
 } = require("../Controllers/courseController.js");
 
 router.param("courseID", async (request, response, next, courseID) => {
-  const course = await fetchStudent(courseID, next);
+  const course = await fetchCourse(courseID, next);
   if (course) {
     request.course = course;
     next();
@@ -22,7 +22,7 @@ router.param("courseID", async (request, response, next, courseID) => {
 
 router.get("/", courseList);
 
-router.post("/college/:collegeID/courses", courseCreate);
+router.post("/", courseCreate);
 
 router.put("/:courseID", courseUpdate);
 
