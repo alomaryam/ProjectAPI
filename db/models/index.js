@@ -48,6 +48,7 @@ db.Sequelize = Sequelize;
 //college relationship
 
 db.College.hasMany(db.Course, {
+  as: "courses",
   foreignKey: "collegeId",
   allowNull: false,
 });
@@ -59,6 +60,7 @@ db.College.hasMany(db.Course, {
 db.Course.belongsTo(db.College, {
   as: "college",
   foreignKey: "collegeId",
+  allowNull: false,
 });
 
 db.Course.belongsToMany(db.Student, {

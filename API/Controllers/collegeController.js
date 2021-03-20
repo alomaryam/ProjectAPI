@@ -1,10 +1,10 @@
 const { College } = require("../../db/models");
-const { courseCreate } = require("./courseController");
+const { Course } = require("../../db/models");
 
 //fetching
-exports.fetchCollege = async (collegeId, next) => {
+exports.fetchCollege = async (collegeID, next) => {
   try {
-    const college = await College.findByPk(collegeId);
+    const college = await College.findByPk(collegeID);
     return college;
   } catch (error) {
     next(error);
@@ -18,9 +18,9 @@ exports.collegeList = async (request, response, next) => {
     const college = await College.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
-        model: courseCreate,
+        model: Course,
         as: "courses",
-        attributes: ["id"],
+        attributes: ["id", "name"],
       },
     });
     response.status(200).json(college);

@@ -1,4 +1,5 @@
 const { Student } = require("../../db/models");
+const { Course } = require("../../db/models");
 
 //fetching
 exports.fetchStudent = async (studentId, next) => {
@@ -16,7 +17,16 @@ exports.studentList = async (request, response, next) => {
   try {
     const student = await Student.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: {
+        model: Course,
+        as: "course",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
     });
+
     response.status(200).json(student);
   } catch (error) {
     next(error);

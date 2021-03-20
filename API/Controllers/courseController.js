@@ -1,4 +1,5 @@
 const { Course } = require("../../db/models");
+const { Student } = require("../../db/models");
 
 //fetching
 exports.fetchCourse = async (courseId, next) => {
@@ -17,15 +18,15 @@ exports.courseList = async (request, response, next) => {
     const course = await Course.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
-        {
-          model: College,
-          as: "college",
-          attributes: ["name"],
-        },
+        // {
+        //   model: College,
+        //   as: "college",
+        //   attributes: ["id"],
+        // },
         {
           model: Student,
           as: "student",
-          attributes: ["name"],
+          attributes: ["id", "name"],
           through: {
             attributes: [],
           },
@@ -40,9 +41,11 @@ exports.courseList = async (request, response, next) => {
 
 // create student
 
+//line 46 ???
 exports.courseCreate = async (request, response, next) => {
   try {
-    request.body.collegeID = request.college.id;
+    request.body.collegeId = request.college.id;
+
     const newCourse = await Course.create(request.body);
     response.status(201).json(newCourse);
   } catch (error) {
