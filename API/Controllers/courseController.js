@@ -11,7 +11,7 @@ exports.fetchCourse = async (courseId, next) => {
   }
 };
 
-// get student list
+// get course list
 
 exports.courseList = async (request, response, next) => {
   try {
@@ -34,19 +34,28 @@ exports.courseList = async (request, response, next) => {
   }
 };
 
-// create student
+// create course
+// exports.courseCreate = async (request, response, next) => {
+//   try {
+//     // request.body.collegeId = request.college.id;
 
-//line 46 ???
+//     const newCourse = await Course.create(request.body);
+//     response.status(201).json(newCourse);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// create course
+
 exports.courseCreate = async (request, response, next) => {
   try {
-    request.body.collegeId = request.college.id;
+    // request.body.collegeId = request.college.id;
     const newCourse = await Course.create(request.body);
     await request.body.studentId.forEach(async (id) => {
       const student = await Student.findByPk(id);
       newCourse.addStudent(student);
     });
-    // const student = await Student.findByPk(1);
-    // newStudent.addStudent(course);
 
     response.status(201).json(newCourse);
   } catch (error) {
@@ -54,7 +63,7 @@ exports.courseCreate = async (request, response, next) => {
   }
 };
 
-//update student
+//update course
 
 exports.courseUpdate = async (request, response, next) => {
   try {
@@ -65,7 +74,7 @@ exports.courseUpdate = async (request, response, next) => {
   }
 };
 
-//delete students
+//delete course
 
 exports.courseDelete = async (request, response, next) => {
   try {
