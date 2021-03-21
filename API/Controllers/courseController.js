@@ -50,7 +50,6 @@ exports.courseList = async (request, response, next) => {
 
 exports.courseCreate = async (request, response, next) => {
   try {
-    // request.body.collegeId = request.college.id;
     const newCourse = await Course.create(request.body);
     await request.body.studentId.forEach(async (id) => {
       const student = await Student.findByPk(id);
