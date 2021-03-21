@@ -38,6 +38,11 @@ exports.studentList = async (request, response, next) => {
 exports.studentCreate = async (request, response, next) => {
   try {
     const newStudent = await Student.create(request.body);
+    await request.body.courseId.forEach(async (id) => {
+      const course = await Course.findByPk(id);
+      newStudent.addCourse(course);
+    });
+
     response.status(201).json(newStudent);
   } catch (error) {
     next(error);

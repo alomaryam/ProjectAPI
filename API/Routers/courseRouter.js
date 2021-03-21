@@ -22,7 +22,7 @@ router.param("courseID", async (request, response, next, courseID) => {
 
 router.get("/", courseList);
 
-router.post("/", courseCreate);
+router.post("/:courseID", courseCreate);
 
 router.put("/:courseID", courseUpdate);
 

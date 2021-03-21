@@ -18,11 +18,6 @@ exports.courseList = async (request, response, next) => {
     const course = await Course.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
-        // {
-        //   model: College,
-        //   as: "college",
-        //   attributes: ["id"],
-        // },
         {
           model: Student,
           as: "student",
@@ -45,8 +40,14 @@ exports.courseList = async (request, response, next) => {
 exports.courseCreate = async (request, response, next) => {
   try {
     request.body.collegeId = request.college.id;
-
     const newCourse = await Course.create(request.body);
+    await request.body.studentId.forEach(async (id) => {
+      const student = await Student.findByPk(id);
+      newCourse.addStudent(student);
+    });
+    // const student = await Student.findByPk(1);
+    // newStudent.addStudent(course);
+
     response.status(201).json(newCourse);
   } catch (error) {
     next(error);
